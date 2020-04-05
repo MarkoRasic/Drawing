@@ -41,22 +41,18 @@ public class Circle {
         this.selected = selected;
     }
 
-    /*13*/
     public double area(){
         return (radius*radius)*Math.PI;
     }
 
-    /*v6 *1*/
     public boolean contains (Point p){
         return (this.center.distance(p) <=this.radius);
     }
 
-    /*v6 *2*/
     public boolean contains(int x, int y){
         return contains(new Point(x,y));
     }
 
-    /*v7 *6*/
     @Override
     public boolean equals(Object obj){
         if (obj instanceof Circle){

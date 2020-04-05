@@ -17,12 +17,10 @@ public class Donut extends Circle {
         this.innerRadius = innerRadius;
     }
 
-    /*v7 *2*/
     public double area(){
         return super.area() - this.innerRadius * this.innerRadius * Math.PI;
     }
 
-    /*v7 *7*/
     public boolean equals(Object obj){
         if(obj instanceof Donut){
             Donut temp = (Donut) obj;
