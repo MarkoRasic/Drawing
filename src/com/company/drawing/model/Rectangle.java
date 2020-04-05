@@ -6,14 +6,14 @@ public class Rectangle {
     private int height;
     private boolean selected;
 
-    public Rectangle(Point upperLeft,int width,int height){
+    public Rectangle(Point upperLeft, int width, int height) {
         this.upperLeft = upperLeft;
         this.width = width;
         this.height = height;
     }
 
-    public Rectangle(Point upperLeft,int width,int height,boolean selected){
-        this(upperLeft,width,height);
+    public Rectangle(Point upperLeft, int width, int height, boolean selected) {
+        this(upperLeft, width, height);
         this.selected = selected;
     }
 
@@ -53,19 +53,35 @@ public class Rectangle {
         return this.width * this.height;
     }
 
-    public boolean contains(Point p){
+    public boolean contains(Point p) {
         boolean containsX = p.getX() > this.upperLeft.getX() && p.getX() < this.upperLeft.getX() + this.width;
         boolean containsY = p.getY() > this.upperLeft.getY() && p.getY() < this.upperLeft.getY() + this.height;
         return containsX && containsY;
     }
 
-    public boolean contains(int x, int y){
-        return contains(new Point (x,y));
+    public boolean contains(int x, int y) {
+        return contains(new Point(x, y));
     }
 
     public Point lowerRight(){
-       int upperRight = this.upperLeft.getX()+this.width;
-       int lowerLeft = this.upperLeft.getY()+this.height;
-       return (new Point (upperRight,lowerLeft));
+        Point upperRight =new Point ((this.upperLeft.getX()+getWidth()),this.upperLeft.getY());
+        Point lowerRight= new Point(upperRight.getX(),(upperRight.getY()+height));
+        return lowerRight;
+    }
+
+    public Point getLowerRight() {
+        return new Point(this.upperLeft.getX() + this.width, this.upperLeft.getY() + this.height);
+    }
+    @Override
+    public boolean equals(Object obj){
+        if (obj instanceof Rectangle){
+            Rectangle temp = (Rectangle) obj;
+            if (this.upperLeft == temp.upperLeft && this.width == temp.width && this.height == temp.height) {
+                return true;
+            }else{
+                return false;
+            }
+        }
+        return false;
     }
 }

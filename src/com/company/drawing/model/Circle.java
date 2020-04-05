@@ -1,20 +1,22 @@
 package com.company.drawing.model;
 
 public class Circle {
+
     private Point center;
     private int radius;
     private boolean selected;
 
-    public Circle(Point center,int radius){
+    public Circle(Point center, int radius) {
         this.center = center;
         this.radius = radius;
     }
 
-    public Circle (Point center,int radius, boolean selected){
-        this(center,radius);
+    public Circle(Point center, int radius, boolean selected) {
+        this(center, radius);
         this.selected = selected;
     }
 
+    /*12*/
     public Point getCenter() {
         return center;
     }
@@ -27,7 +29,7 @@ public class Circle {
         return radius;
     }
 
-    public void setRadius(int radius) {
+    public void setRadius(int r) {
         this.radius = radius;
     }
 
@@ -39,15 +41,32 @@ public class Circle {
         this.selected = selected;
     }
 
-    public double area() {
-        return this.radius * this.radius * Math.PI;
+    /*13*/
+    public double area(){
+        return (radius*radius)*Math.PI;
     }
 
-    public boolean contains(Point p){
-        return (this.center.distance(p)<=this.radius);
+    /*v6 *1*/
+    public boolean contains (Point p){
+        return (this.center.distance(p) <=this.radius);
     }
 
+    /*v6 *2*/
     public boolean contains(int x, int y){
-        return contains(new Point (x,y));
+        return contains(new Point(x,y));
+    }
+
+    /*v7 *6*/
+    @Override
+    public boolean equals(Object obj){
+        if (obj instanceof Circle){
+            Circle temp = (Circle) obj;
+            if (this.center == temp.center && this.radius == temp.radius){
+                return true;
+            }else {
+                return false;
+            }
+        }
+        return false;
     }
 }

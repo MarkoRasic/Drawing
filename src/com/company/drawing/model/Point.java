@@ -45,6 +45,18 @@ public class Point {
             double d = Math.sqrt(dx * dx + dy * dy);
             return d;
         }
+    @Override
+    public boolean equals(Object obj){
+        if (obj instanceof Point){
+            Point temp = (Point) obj;
+            if (x == temp.x && y == temp.y){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        return false;
+    }
     }
 
 

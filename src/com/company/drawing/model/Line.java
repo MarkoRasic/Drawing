@@ -42,4 +42,17 @@ public class Line {
     public double length(){
         return startPoint.distance(endPoint);
     }
+
+    @Override
+    public boolean equals(Object obj){
+        if (obj instanceof Line){
+            Line temp = (Line) obj;
+            if (startPoint == temp.startPoint && endPoint == temp.endPoint){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        return false;
+    }
 }
