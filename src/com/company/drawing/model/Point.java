@@ -1,18 +1,22 @@
 package com.company.drawing.model;
 
-public class Point {
+import java.awt.*;
+
+public class Point extends Shape implements Movable {
+
     private int x;
     private int y;
-    private boolean selected;
 
-    public Point (int x, int y){
+    public Point(int x, int y) {
+        super();
         this.x = x;
         this.y = y;
     }
 
-    public Point (int x, int y, boolean selected){
-        this(x,y);
-        this.selected=selected;
+    public Point(int x, int y, boolean selected) {
+        super(selected);
+       this.x = x;
+       this.y = y;
     }
 
     public int getX() {
@@ -31,32 +35,39 @@ public class Point {
         this.y = y;
     }
 
-    public boolean isSelected() {
-        return selected;
+    public double distance(Point p) {
+        int dx = this.x - p.x;
+        int dy = this.y - p.y;
+        return Math.sqrt(dx * dx + dy * dy);
     }
 
-    public void setSelected(boolean selected) {
-        this.selected = selected;
-    }
-
-    public double distance(Point p){
-            int dx = this.x - p.x;
-            int dy = this.y - p.y;
-            double d = Math.sqrt(dx * dx + dy * dy);
-            return d;
-        }
     @Override
-    public boolean equals(Object obj){
-        if (obj instanceof Point){
-            Point temp = (Point) obj;
-            if (x == temp.x && y == temp.y){
-                return true;
-            }else{
-                return false;
-            }
+    public boolean equals(Object obj) {
+        if (obj instanceof Point) {
+            Point p = (Point) obj;
+            return this.x == p.x && this.y == p.y;
         }
         return false;
     }
+
+    public String toString() {
+        return "(" + this.x + "," + this.y + ")";
     }
+
+    @Override
+    public boolean contains(int x, int y) {
+        return false;
+    }
+
+    @Override
+    public void draw(Graphics g) {
+
+    }
+
+    @Override
+    public void moveBy(int byX, int byY) {
+
+    }
+}
 
 

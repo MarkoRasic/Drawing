@@ -1,22 +1,24 @@
 package com.company.drawing.model;
 
-public class Circle {
+import java.awt.*;
+
+public class Circle extends Shape implements Movable {
 
     private Point center;
     private int radius;
-    private boolean selected;
 
     public Circle(Point center, int radius) {
+        super();
         this.center = center;
         this.radius = radius;
     }
 
     public Circle(Point center, int radius, boolean selected) {
-        this(center, radius);
-        this.selected = selected;
+        super(selected);
+        this.center = center;
+        this.radius = radius;
     }
 
-    /*12*/
     public Point getCenter() {
         return center;
     }
@@ -29,40 +31,41 @@ public class Circle {
         return radius;
     }
 
-    public void setRadius(int r) {
+    public void setRadius(int radius) {
         this.radius = radius;
     }
 
-    public boolean isSelected() {
-        return selected;
+    public double area() {
+        return this.radius * this.radius * Math.PI;
     }
 
-    public void setSelected(boolean selected) {
-        this.selected = selected;
+    public boolean contains(Point p) {
+        return this.center.distance(p) <= this.radius;
     }
 
-    public double area(){
-        return (radius*radius)*Math.PI;
-    }
-
-    public boolean contains (Point p){
-        return (this.center.distance(p) <=this.radius);
-    }
-
-    public boolean contains(int x, int y){
-        return contains(new Point(x,y));
+    public boolean contains(int x, int y) {
+        return this.contains(new Point(x, y));
     }
 
     @Override
-    public boolean equals(Object obj){
-        if (obj instanceof Circle){
-            Circle temp = (Circle) obj;
-            if (this.center == temp.center && this.radius == temp.radius){
-                return true;
-            }else {
-                return false;
-            }
+    public void draw(Graphics g) {
+
+    }
+
+    public boolean equals(Object obj) {
+        if (obj instanceof Circle) {
+            Circle c = (Circle) obj;
+            return this.center.equals(c.center) && this.radius == c.radius;
         }
         return false;
+    }
+
+    public String toString() {
+        return "Center:" + this.center + ", Radius:" + this.radius;
+    }
+
+    @Override
+    public void moveBy(int byX, int byY) {
+
     }
 }

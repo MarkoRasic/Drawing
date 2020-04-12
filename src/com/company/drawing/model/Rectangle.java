@@ -1,20 +1,25 @@
 package com.company.drawing.model;
 
-public class Rectangle {
+import java.awt.*;
+
+public class Rectangle extends Shape implements Movable {
+
     private Point upperLeft;
     private int width;
     private int height;
-    private boolean selected;
 
     public Rectangle(Point upperLeft, int width, int height) {
+        super();
         this.upperLeft = upperLeft;
         this.width = width;
         this.height = height;
     }
 
     public Rectangle(Point upperLeft, int width, int height, boolean selected) {
-        this(upperLeft, width, height);
-        this.selected = selected;
+        super(selected);
+        this.upperLeft = upperLeft;
+        this.width = width;
+        this.height = height;
     }
 
     public Point getUpperLeft() {
@@ -41,14 +46,6 @@ public class Rectangle {
         this.height = height;
     }
 
-    public boolean isSelected() {
-        return selected;
-    }
-
-    public void setSelected(boolean selected) {
-        this.selected = selected;
-    }
-
     public double area() {
         return this.width * this.height;
     }
@@ -63,25 +60,29 @@ public class Rectangle {
         return contains(new Point(x, y));
     }
 
-    public Point lowerRight(){
-        Point upperRight =new Point ((this.upperLeft.getX()+getWidth()),this.upperLeft.getY());
-        Point lowerRight= new Point(upperRight.getX(),(upperRight.getY()+height));
-        return lowerRight;
+    @Override
+    public void draw(Graphics g) {
+
     }
 
     public Point getLowerRight() {
         return new Point(this.upperLeft.getX() + this.width, this.upperLeft.getY() + this.height);
     }
-    @Override
-    public boolean equals(Object obj){
-        if (obj instanceof Rectangle){
-            Rectangle temp = (Rectangle) obj;
-            if (this.upperLeft == temp.upperLeft && this.width == temp.width && this.height == temp.height) {
-                return true;
-            }else{
-                return false;
-            }
+
+    public boolean equals(Object obj) {
+        if (obj instanceof  Rectangle) {
+            Rectangle r = (Rectangle) obj;
+            return this.upperLeft.equals(r.upperLeft) && this.width == r.width && this.height == r.height;
         }
         return false;
+    }
+
+    public String toString() {
+        return "Left upper:" + this.upperLeft + ", Width:" + this.width + ", Height:" + this.height;
+    }
+
+    @Override
+    public void moveBy(int byX, int byY) {
+
     }
 }

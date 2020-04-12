@@ -1,64 +1,92 @@
 package com.company.drawing.test;
 
-import com.company.drawing.model.*;
 
+import com.company.drawing.model.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Scanner;
 
 public class TestGeometry {
 
     public static void main(String[] args) {
-        // Kreirati objekat klase Point sa inicijalnim koordinatama x=5, y=6 i i dodeliti ga
-        // referenci p3.
-//        Point p3 = new Point(5,6);
+        Point p1 = new Point(0, 0);
+        Point p2 = new Point(3, 4);
+        System.out.println(p1.distance(p2));
 
-        // Ispisati na konzolu vrednosti svih promenljivih tačke p3. Zašto obeležje selected
-        // ima vrednost false?
-        // Odgovor: selected ima vrednost false zato sto joj nismo dodelili vrednost prilikom kreiranja objekta, a podrazumevana
-        // vrednost selected je false
-//        System.out.println((p3.getX()));
-//        System.out.println((p3.getY()));
-//        System.out.println((p3.isSelected()));
+        Circle c = new Circle(null, 3);
+        System.out.println(c.area());
 
-        // Kreirati objekat klase Point i dodeliti ga referenci p4. Pri tome inicijalizovati obeležja
-        // x, y i selected na vrednosti 10, 20 i true, respektivno.
-//        Point p4 = new Point(10,20,true);
+        Rectangle r = new Rectangle(null, 6, 4);
+        System.out.println(r.area());
 
-        // Postaviti obeležje selected tačke na koju ukazuje referenca p3 na trenutnu
-        // vrednost obeležja selected tačke na koju ukazuje referenca p4.
-//        p3.setSelected(p4.isSelected());
+        // vezba 5
+        Point p3 = new Point(5, 6);
+        System.out.println("x=" + p3.getX() + ", y=" + p3.getY() + ", selected=" + p3.isSelected());
 
+        Point p4 = new Point(10, 20, true);
+        p3.setSelected(p4.isSelected());
 
-        // Deklarisati referencu p5 tipa Point i dodeliti joj vrednost reference p3.
-//        Point p5 = p3;
+        Point p5 = p3;
+        p3.setX(9);
+        System.out.println(p5.getX());
 
-        // Tački na koju ukazuje referenca p3 postaviti koordinatu x na vrednost 9. Potom
-        // ispisati na konzolu vrednost x tačke na koju ukazuje referenca p5.
-//        p3.setX(9);
-//        System.out.println(p5.getX());
-
-        // Kreirati novi objekat klase Point i dodeliti ga referenci p6. Prilikom poziva
-        // konstruktora proslediti vrednosti koordinata x i y tačke na koju ukazuje referenca p3.
-//        Point p6 = new Point(p3.getX(),p3.getY());
-//
-//        Hexagon hex = new Hexagon();
-//        hex.setLenght(9);
-//        System.out.println("Area of hexagon is " +hex.area());
-
-
+        Point p6 = new Point(p3.getX(), p3.getY());
+/*
         System.out.println("Upisite parametre za kreiranje tacke:");
         Scanner scanner = new Scanner(System.in);
         String pointInput = scanner.nextLine();
+        String[] coordinates = pointInput.split(" ");
+        int inputX = Integer.parseInt(coordinates[0]);
+        int inputY = Integer.parseInt(coordinates[1]);
+        boolean selected = false;
+        if (coordinates.length == 3) {
+            selected = Boolean.parseBoolean(coordinates[2]);
+        }
+        Point pointFromInput = new Point(inputX, inputY, selected);
+        System.out.println("x=" + pointFromInput.getX() + ", y=" + pointFromInput.getY() + ", selected=" + pointFromInput.isSelected());
+        Donut d1 = new Donut(new Point(10, 20), 30, 20);
+        Donut d2 = new Donut(new Point(10, 20), 30, 20);
+        System.out.println(d1.equals(d2));
+        Point[] arrayOfPoints = {p1, p2, p5};
+        for (Point point : arrayOfPoints) {
+            System.out.println(point);
+        }
+        ArrayList<Point> listOfPoints = new ArrayList<>();
+        listOfPoints.add(p5);
+        listOfPoints.add(p1);
+        for (Point point : listOfPoints) {
+            System.out.println(point);
+        }
+        */
+//        Circle cstr = new Circle(new Point(10, 20), 30);
+//        System.out.println(cstr);
+/*
+        Polyline pll = new Polyline();
+        pll.addSegment(l1);
+        //...
+        if (!pll.addSegment(l5)) {
+            System.out.println("Neuspesno dodavanje segmenta u poliliniju");
+        }
+ */
 
-        int tackaX =Integer.parseInt(String.valueOf(pointInput.charAt(0))) ;
-        int tackaY =Integer.parseInt(String.valueOf(pointInput.charAt(2)));
-        String inputSelected =pointInput.substring(4);
-        boolean isSelectedBoo = Boolean.parseBoolean(inputSelected);
 
 
-        Point pointFromInput=new Point(tackaX,tackaY,isSelectedBoo);
+        ArrayList<Shape> shapes = new ArrayList<>();
 
-        System.out.println(pointFromInput.getX());
-        System.out.println(pointFromInput.getY());
-        System.out.println(pointFromInput.isSelected());
+        Point tacka1 = new Point(100, 200);
+        Line linija1 = new Line(new Point(118, 150), new Point(100, 200));
+        Circle krug1 = new Circle(new Point(50, 60), 60);
+        Rectangle pravoug1 = new Rectangle(new Point(100, 200), 300, 200);
+
+        shapes.add(tacka1);
+        shapes.add(linija1);
+        shapes.add(krug1);
+        shapes.add(pravoug1);
+
+
+        for(Shape shape : shapes) {
+            System.out.println(shape.contains(100, 200));
+        }
+
     }
 }
